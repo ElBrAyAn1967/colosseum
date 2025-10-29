@@ -1,0 +1,90 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+build/
+out/
+target/
+.anchor/
+
+# Environment variables - NEVER COMMIT THESE
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+**/.env
+**/.env.local
+
+# Solana keypairs - CRITICAL: NEVER COMMIT THESE
+*-keypair.json
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+!vercel.json
+!Anchor.toml
+!.vscode/*.json
+!src/idl/*.json
+
+# Vercel
+.vercel/
+**/.vercel/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+*.sw?
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Test coverage
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Local Solana config
+.config/
+test-ledger/
+
+# Rust
+Cargo.lock
+**/.cargo/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+ENV/
+
+# IDEs
+*.swp
+*~
+.project
+.classpath
+.settings/
+.loadpath
