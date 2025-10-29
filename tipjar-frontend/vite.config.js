@@ -1,5 +1,8 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
+import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
+import rollupNodePolyFill from 'rollup-plugin-polyfill-node';
 
 export default defineConfig({
   plugins: [react()],
@@ -9,30 +12,33 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      util: 'util/',
-      assert: 'assert/',
-      buffer: 'buffer/',
-      process: 'process/browser',
+      stream: 'stream-browserify',
+      util: 'util',
     },
   },
   build: {
     outDir: 'dist',
     sourcemap: false,
     rollupOptions: {
-      output: {
-        manualChunks: {
-          'solana': ['@solana/web3.js'],
-          'anchor': ['@coral-xyz/anchor'],
-          'wallet-adapter': [
-            '@solana/wallet-adapter-base',
-            '@solana/wallet-adapter-react',
-            '@solana/wallet-adapter-react-ui',
-            '@solana/wallet-adapter-wallets'
-          ],
-        },
-      },
+      plugins: [rollupNodePolyFill()],
     },
-    chunkSizeWarningLimit: 1000,
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      define: {
+        global: 'globalThis',
+      },
+      plugins: [
+        NodeGlobalsPolyfillPlugin({
+          process: true,
+          buffer: true,
+        }),
+        NodeModulesPolyfillPlugin(),
+      ],
+    },
   },
   server: {
     port: 5173,

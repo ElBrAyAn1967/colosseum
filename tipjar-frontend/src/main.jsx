@@ -1,5 +1,4 @@
-import { Buffer } from "buffer";
-window.Buffer = Buffer;
+import './polyfills';
 
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -11,8 +10,6 @@ import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import {
   PhantomWalletAdapter,
   SolflareWalletAdapter,
-  BackpackWalletAdapter,
-  SlopeWalletAdapter,
   TorusWalletAdapter
 } from "@solana/wallet-adapter-wallets";
 import { clusterApiUrl } from "@solana/web3.js";
@@ -29,8 +26,6 @@ const endpoint = import.meta.env.VITE_RPC_URL || clusterApiUrl(network);
 const wallets = [
   new PhantomWalletAdapter(),
   new SolflareWalletAdapter(),
-  new BackpackWalletAdapter(),
-  new SlopeWalletAdapter(),
   new TorusWalletAdapter(),
 ];
 
