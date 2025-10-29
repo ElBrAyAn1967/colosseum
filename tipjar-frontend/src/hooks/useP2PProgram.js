@@ -1,20 +1,11 @@
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { Program, AnchorProvider, web3, BN } from '@coral-xyz/anchor';
+import { Program, AnchorProvider, BN } from '@coral-xyz/anchor';
 import { PublicKey, SystemProgram } from '@solana/web3.js';
-import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { useMemo } from 'react';
+import IDL from '../idl/tipjar.json';
 
-// IMPORTANTE: Reemplazar con tu Program ID después del deploy
+// Program ID del contrato desplegado
 const PROGRAM_ID = new PublicKey('4E55dXLQkqXn7zi75aeBh4LJMXeAZw4KPYwgijuSCjun');
-
-// IDL temporal - se actualizará después de compilar
-const IDL = {
-  version: "0.1.0",
-  name: "tipjar",
-  instructions: [],
-  accounts: [],
-  types: [],
-};
 
 export function useP2PProgram() {
   const { connection } = useConnection();
